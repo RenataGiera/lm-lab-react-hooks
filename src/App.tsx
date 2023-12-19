@@ -10,6 +10,7 @@ import { CountCats } from './components/hooks/use_state/count_cats';
 import { Section } from './components/section';
 
 function App() {
+
 	return (
 		<>
 			<div className='App'>
@@ -32,7 +33,7 @@ function App() {
 				</Section>
 
 				<Section>
-					<CountCats />
+					<CountCats cats={2} catsIcon={"🐈"}/>
 				</Section>
 
 				<Section>
