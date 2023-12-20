@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ThemeContext } from './parent.type';
+import { ThemeContext } from './Parent.types';
 import { Child1 } from './child_1';
 import { Child2 } from './child_2';
 

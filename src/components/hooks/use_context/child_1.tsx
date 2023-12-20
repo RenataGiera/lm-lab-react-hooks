@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from './parent.type';
+import { ThemeContext } from './Parent.types';
 
 export const Child1: React.FC = () => {
 	const theme = useContext(ThemeContext)
