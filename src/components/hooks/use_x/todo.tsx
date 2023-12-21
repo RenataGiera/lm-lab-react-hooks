@@ -7,7 +7,7 @@ interface TodoResponse {
 }
 
 export const Todo: React.FC = () => {
-const [data, isFetching] = useTodo<TodoResponse>("https://jsonplaceholder.typicode.com/todos/5")
+const [data, isFetching] = useTodo<TodoResponse>("https://jsonplaceholder.typicode.com/todos/1")
 	
 return (
 	<>
