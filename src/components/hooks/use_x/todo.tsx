@@ -1,43 +1,23 @@
-import { useEffect, useState } from 'react';
-import { isError } from '../../../helpers/is_error';
-
-/** This is the response that TypiCode gives for the /todos/ endpoint */
+import { useTodo } from "./use_todo";
 interface TodoResponse {
-	userId: number;
-	id: number;
-	title: string;
-	completed: boolean;
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
 }
 
-export const Todo = () => {
-	const [data, setData] = useState<TodoResponse>();
-	const [isFetching, setIsFetching] = useState(true);
+export const Todo: React.FC = () => {
+const [data, isFetching] = useTodo<TodoResponse>("https://jsonplaceholder.typicode.com/todos/5")
+	
+return (
+	<>
+		<h2>Custom Hook</h2>
 
-	const url = 'https://jsonplaceholder.typicode.com/todos/1';
+		{isFetching && <p>Fetching...</p>}
+      {data && typeof data === 'object' && (
+        <p>{data.title}</p>
+      )}
+	</>
+)
+}
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch(url);
-				setIsFetching(false);
-				if (response.status === 200) {
-					const json = await response.json();
-					setData(json);
-				}
-			} catch (e: unknown) {
-				setIsFetching(false);
-
-				console.log(isError(e) ? e.message : 'Unknown error!');
-			}
-		};
-		fetchData();
-	}, [url]);
-
-	return (
-		<>
-			<h2>Custom Hook</h2>
-
-			{isFetching ? <p>Fetching...</p> : <p>{data?.title}</p>}
-		</>
-	);
-};
